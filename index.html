@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ko" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>You Seungoh - Official Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucid Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        /* 애플 스타일 글래스모피즘 네비게이션 */
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+        }
+
+        /* 라이트 모드 전용 네비게이션 및 푸터 호버 가독성 개선 */
+        .light header nav a:hover {
+            color: #000000 !important;
+        }
+        .light #mobile-menu {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+        .light #mobile-menu a {
+            color: #4b5563 !important;
+        }
+        .light #mobile-menu a:hover {
+            color: #000000 !important;
+        }
+        .light footer a:hover {
+            color: #000000 !important;
+        }
+
+        /* 물결치듯 흐르는 오로라 배경 애니메이션 */
+        @keyframes wave-aurora {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(40px, -60px) scale(1.2); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-wave-1 {
+            animation: wave-aurora 10s ease infinite;
+        }
+        .animate-wave-2 {
+            animation: wave-aurora 14s ease infinite reverse;
+        }
+
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        /* 케러셀 스크롤바 숨기기 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-[#0b0b0c] text-[#f5f5f7] transition-colors duration-300">
+
+    <!-- 네비게이션 바 -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-white/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#home" class="text-lg font-semibold tracking-tight hover:opacity-85 transition-opacity">
+                Y. SEUNGOH
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-400">
+                <a href="#home" class="hover:text-white transition-colors">HOME</a>
+                <a href="#about" class="hover:text-white transition-colors">ABOUT</a>
+                <a href="#work" class="hover:text-white transition-colors">WORK</a>
+                <a href="#services" class="hover:text-white transition-colors">SERVICES</a>
+                <a href="#contact" class="hover:text-white transition-colors">CONTACT</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <!-- 다크/라이트 모드 토글 버튼 -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer" aria-label="Toggle theme">
+                    <i data-lucide="moon" id="theme-icon" class="w-5 h-5"></i>
+                </button>
+                <!-- 모바일 메뉴 버튼 -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-400 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 모바일 드롭다운 네비게이션 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 border-b border-white/10 px-6 py-4 space-y-3">
+            <a href="#home" class="block text-neutral-400 hover:text-white py-1">HOME</a>
+            <a href="#about" class="block text-neutral-400 hover:text-white py-1">ABOUT</a>
+            <a href="#work" class="block text-neutral-400 hover:text-white py-1">WORK</a>
+            <a href="#services" class="block text-neutral-400 hover:text-white py-1">SERVICES</a>
+            <a href="#contact" class="block text-neutral-400 hover:text-white py-1">CONTACT</a>
+        </div>
+    </header>
+
+    <!-- 1. HOME -->
+    <section id="home" class="min-h-screen flex flex-col items-center justify-center relative px-6 text-center pt-16 overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-1"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-2"></div>
+        
+        <div class="max-w-4xl mx-auto z-10 space-y-6 group cursor-default">
+            <span class="inline-block py-1.5 px-4 rounded-full bg-white/10 text-xs font-medium tracking-widest uppercase text-neutral-300 backdrop-blur-md border border-white/10 transition-all duration-300 group-hover:border-white/30 group-hover:scale-105">
+                Digital Creator & Innovator
+            </span>
+            <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight leading-tight transition-transform duration-500 group-hover:scale-[1.01]">
+                상상을 현실로 만드는<br>
+                <span class="bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-white group-hover:via-indigo-200 group-hover:to-purple-400">
+                    몰입의 디자인 스튜디오
+                </span>
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto font-light transition-colors duration-300 group-hover:text-neutral-300">
+                최첨단 AI 기술과 미니멀한 감각으로 새로운 디지털 경험을 설계합니다.
+            </p>
+            <div class="pt-6">
+                <a href="#about" class="inline-flex items-center justify-center px-8 py-4 rounded-full bg-neutral-900 text-white border border-white/20 font-semibold hover:bg-neutral-800 transition-all transform hover:scale-105 shadow-xl">
+                    탐색하기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. ABOUT -->
+    <section id="about" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+                <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold">About Me</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">유승오 (You Seungoh)</h3>
+                <p class="text-neutral-400 leading-relaxed font-light">
+                    교육 현장의 혁신부터 최첨단 AI 크리에이티브 영역까지 아우르는 멀티디이터입니다. 기술과 인문학의 경계를 넘어 깊은 통찰을 전달합니다.
+                </p>
+                <div class="flex flex-wrap gap-2.5 pt-2">
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전주서곡중(교장)</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)미래교육원 원장</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)교육장</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)정책공보 장학관</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)전북대 대학원 교육학 임용논술 겸임교수</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">칼럼니스트</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">App Developer</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">Digital Creator</span>
+                </div>
+            </div>
+            <div class="bg-neutral-900 border border-white/10 p-8 rounded-3xl space-y-6 shadow-2xl">
+                <h4 class="text-2xl font-bold text-white tracking-tight">핵심 가치 & 비전</h4>
+                <p class="text-sm text-neutral-300 leading-relaxed font-light">
+                    "단순함은 궁극의 정교함이다." 교육과 기술의 융합을 통해 누구나 쉽게 이해하고 영감을 얻을 수 있는 콘텐츠를 창조합니다. 본질에 집중하는 미니멀리즘을 지향합니다.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. WORK -->
+    <section id="work" class="py-24 sm:py-32 border-t border-white/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+            <div>
+                <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-2">Selected Work</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">앱(App)개발 프로젝트 아카이브</h3>
+            </div>
+            <div class="hidden md:flex space-x-3">
+                <button id="slide-left" class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button id="slide-right" class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="carousel-container" class="flex overflow-x-auto space-x-6 px-6 no-scrollbar snap-x snap-mandatory">
+            <!-- Item 1 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/money/', '_blank')">
+                <div class="h-64 rounded-2xl bg-white border border-white/10 overflow-hidden relative mb-4 p-4 flex items-center justify-center">
+                    <img src="work1-qr.png" alt="QR 코드 생성기 #01" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>QR 코드 생성기 #01</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">웹 기반 실시간 QR 코드 생성, URL, WiFi, 전화, 문자, 명함</p>
+            </div>
+            <!-- Item 2 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/wordcloud/', '_blank')">
+                <div class="h-64 rounded-2xl bg-white border border-white/10 overflow-hidden relative mb-4 p-4 flex items-center justify-center">
+                    <img src="wordcloud.jpg" alt="워드크라우드 #02" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>워드크라우드(WordCloud) #02</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">보고서나 글에서 중요한 워드(키워드)를 분석</p>
+            </div>
+            <!-- Item 3 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Health/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="ice-cream.jpg" alt="기초대사량 분석 #03" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>기초대사량 분석(운동별 칼로리 소모량, 주간식단) #03</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">운동별 칼로리 소모량, 주간식단</p>
+            </div>
+            <!-- Item 4 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/calli/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="calli.jpg" alt="사진과 캘리 합성 #04" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>사진과 캘리 합성(Calli Academy) #04</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">감성적인 캘리그라피와 자연 사진의 아름다운 조화</p>
+            </div>
+            <!-- Item 5 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/essay/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="bookstore.jpg" alt="논리논술 #05" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>논리논술(초중고 논술 교사) #05</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">초중고 학생들을 위한 논리적 사고 및 논술 지도 전문 프로그램</p>
+            </div>
+            <!-- Item 6 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/TelePrompter/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="teleprompter.jpg" alt="TelePrompter #06" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>TelePrompter(대본 프롬프터) #06</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">말하기와 발표를 위한 스마트 대본 프롬프터 유틸리티</p>
+            </div>
+            <!-- Item 7 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Tour/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="touro.jpg" alt="TourRo #07" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>TourRo(투어로) 우리나라 구석구석 #07</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">관광지, 맛집, 축제, 숙박, 올레길 안내</p>
+            </div>
+            <!-- Item 8 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Remove_bg/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="remover.jpg" alt="Remove_bg 앱 #08" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>Remove_bg(배경제거) 앱 #08</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">배경을 손쉽게 제거, 사이즈도 줄여줘요.</p>
+            </div>
+            <!-- Item 9 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/ChildHeight/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="height.jpg" alt="Child Height Prediction #09" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>Child Height Prediction(아이 키 성장 예측) 앱 #09</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">아이의 예상 키와 성장을 예측해주는 스마트 성장 관리 앱</p>
+            </div>
+            <!-- Item 10 -->
+            <div class="min-w-[320px] md:min-w-[400px] snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Class_Group/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4">
+                    <img src="class-group.jpg" alt="교실 수업 모둠 편성기 #10" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-90 group-hover:opacity-100">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>교실 수업 모둠 편성기 #10</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">효과적인 교실 수업을 위한 스마트 모둠 편성 유틸리티</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. SERVICES -->
+    <section id="services" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10">
+        <div class="mb-16">
+            <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-2">Expertise & Services</h2>
+            <h3 class="text-3xl md:text-4xl font-bold tracking-tight">제공 서비스 및 전문 영역</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">App 개발</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">사용자 중심의 직관적인 인터페이스와 강력한 기능을 갖춘 애플리케이션 개발</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">AI 강의</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">SUNO, Midjourney, GPT, Gemini, Claude, NotebookLM, Hedra 등 최신 AI 마스터 클래스</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">AI Digital Creator</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">생성형 AI를 활용한 차세대 미디어 콘텐츠 및 크리에이티브 프로덕션</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">로고 디자인 & 캘리그라피</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">브랜드의 본질을 담아내는 감각적인 로고와 아날로그 감성의 캘리그라피</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">전북대 대학원 교육학 임용논술</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">전북대학교 대학원 교육학 임용 및 논술 지도 (겸임교수)</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">교육학이 교실속으로 집필</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">교육학 이론을 실제 학교 교실 수업에 생생하게 적용하는 도서 집필</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">칼럼니스트</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">정책, 교육, 기술 트렌드에 대한 깊이 있는 통찰과 칼럼 기고</p>
+            </div>
+            <div class="p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg hover:shadow-xl transition-all">
+                <h4 class="text-xl font-semibold mb-3">사주 / 타로 상담사</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">인문의 깊이와 현대적 해석을 더한 전문적인 사주 및 타로 카운셀링</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACT -->
+    <section id="contact" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10 text-center">
+        <div class="max-w-3xl mx-auto space-y-8">
+            <div>
+                <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-2">Get In Touch</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">연결 및 소통하기</h3>
+                <p class="text-neutral-400 mt-2 font-light">다양한 플랫폼과 QR 코드를 통해 더 빠르게 소통해 보세요.</p>
+            </div>
+
+            <!-- 전화번호 자동 연결 QR 코드 삽입 -->
+            <div class="flex justify-center mb-6">
+                <div class="p-5 rounded-2xl bg-neutral-900 border border-white/10 flex flex-col items-center space-y-3 shadow-xl inline-block">
+                    <div class="w-36 h-36 bg-white p-2 rounded-xl overflow-hidden flex items-center justify-center">
+                        <img src="qr-code.png" alt="Phone QR Code" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs text-neutral-400 tracking-wider font-semibold">SCAN QR CODE</span>
+                </div>
+            </div>
+
+            <!-- SNS 및 소셜 링크 버튼 영역 -->
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 pt-4">
+                <a href="https://youtube.com/@pianocanvas" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">YouTube</span>
+                </a>
+                <a href="https://github.com/youseungoh" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">GitHub</span>
+                </a>
+                <a href="https://www.facebook.com/yuseung.o.2025/" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Instagram</span>
+                </a>
+                <a href="https://www.threads.com/@hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="at-sign" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Threads</span>
+                </a>
+                <a href="https://www.tiktok.com/@pianocanvas2?_r=1&_t=ZS-98WJ8KIg0Y5" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="video" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">TikTok</span>
+                </a>
+                <a href="https://1000sora.com" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Blog</span>
+                </a>
+                <a href="mailto:yso21@naver.com" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="py-10 px-6 border-t border-white/10 text-center text-xs text-neutral-500 leading-snug">
+        <div class="space-y-1">
+            <p>©Produced by You Seungoh. yso21@naver.com</p>
+            <p><a href="https://youtube.com/@pianocanvas" target="_blank" class="text-neutral-400 hover:text-neutral-900 underline transition-colors">youtube.com/@pianocanvas</a> &nbsp;|&nbsp; Healing Pop Music</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 로직 -->
+    <script>
+        // Lucide 아이콘 초기화
+        lucide.createIcons();
+
+        // 모바일 메뉴 토글
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 모바일 메뉴 클릭 시 자동 닫힘
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 다크/라이트 모드 토글 기능
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                document.body.classList.remove('bg-[#0b0b0c]', 'text-[#f5f5f7]');
+                document.body.classList.add('bg-[#ffffff]', 'text-[#1d1d1f]');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+                document.body.classList.remove('bg-[#ffffff]', 'text-[#1d1d1f]');
+                document.body.classList.add('bg-[#0b0b0c]', 'text-[#f5f5f7]');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+
+        // WORK 케러셀 좌우 버튼 스크롤 제어
+        const carousel = document.getElementById('carousel-container');
+        const slideLeft = document.getElementById('slide-left');
+        const slideRight = document.getElementById('slide-right');
+
+        if (slideLeft && slideRight && carousel) {
+            slideLeft.addEventListener('click', () => {
+                carousel.scrollBy({ left: -420, behavior: 'smooth' });
+            });
+            slideRight.addEventListener('click', () => {
+                carousel.scrollBy({ left: 420, behavior: 'smooth' });
+            });
+        }
+    </script>
+</body>
+</html>
