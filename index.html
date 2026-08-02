@@ -555,9 +555,13 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
-                <h4 class="text-xl font-semibold mb-3">App 개발</h4>
-                <p class="text-sm text-neutral-600 font-light leading-relaxed">사용자 중심의 직관적인 인터페이스와 강력한 기능을 갖춘 애플리케이션 개발</p>
+            <!-- App(앱) 개발 카드 (요청 문구 및 노션 링크 적용) -->
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://app.notion.com/p/App-100-_Github-36b3fe97198b80aebc5bd9d7b6a50043?source=copy_link', '_blank')">
+                <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
+                    <span>App(앱) 개발</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400 group-hover:text-black transition-colors"></i>
+                </h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">학생들의 역량개발을 위한 학교 교실수업에서 활용하는 앱과 일상에 도움을 주는 실용적인 앱 개발</p>
             </div>
             <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
                 <h4 class="text-xl font-semibold mb-3">AI 강의</h4>
@@ -567,7 +571,6 @@
                 <h4 class="text-xl font-semibold mb-3">AI Digital Creator</h4>
                 <p class="text-sm text-neutral-600 font-light leading-relaxed">생성형 AI를 활용한 차세대 미디어 콘텐츠 및 크리에이티브 프로덕션</p>
             </div>
-            <!-- 로고 디자인 & 캘리그라피 카드 -->
             <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://www.instagram.com/hangl_calli', '_blank')">
                 <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
                     <span>로고 디자인 & 캘리그라피</span>
@@ -583,7 +586,6 @@
                 <h4 class="text-xl font-semibold mb-3">교육학이 교실속으로 집필</h4>
                 <p class="text-sm text-neutral-600 font-light leading-relaxed">교육학 이론을 실제 학교 교실 수업에 생생하게 적용하는 도서 집필, AI를 활용 책쓰기와 퍼블리싱 컨설팅</p>
             </div>
-            <!-- 칼럼니스트 & Kakao 브런치 작가 카드 (인스타그램 카드와 동일하게 외부 링크 아이콘 및 브런치 링크 적용) -->
             <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://brunch.co.kr/@yso21', '_blank')">
                 <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
                     <span>칼럼니스트 & Kakao 브런치 작가</span>
@@ -757,31 +759,6 @@
             carousel.addEventListener('touchend', stopAutoScroll);
         }
 
-        // HOME 화면 유튜브 미니 카루셀 자동 스크롤 구현 (마우스 호버 시 일시 정지)
-        const ytCarousel = document.getElementById('youtube-carousel');
-        let ytAutoScrollTimer;
-
-        function startYtAutoScroll() {
-            if (!ytCarousel) return;
-            ytAutoScrollTimer = setInterval(() => {
-                ytCarousel.scrollLeft += 1;
-                if (ytCarousel.scrollLeft >= (ytCarousel.scrollWidth - ytCarousel.clientWidth - 5)) {
-                    ytCarousel.scrollLeft = 0;
-                }
-            }, 30);
-        }
-
-        function stopYtAutoScroll() {
-            clearInterval(ytAutoScrollTimer);
-        }
-
-        if (ytCarousel) {
-            startYtAutoScroll();
-            ytCarousel.addEventListener('mouseenter', stopYtAutoScroll);
-            ytCarousel.addEventListener('mouseleave', startYtAutoScroll);
-            ytCarousel.addEventListener('touchstart', stopYtAutoScroll);
-            ytCarousel.addEventListener('touchend', startYtAutoScroll);
-        }
-    </script>
+        --></script>
 </body>
 </html>
