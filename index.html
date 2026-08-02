@@ -533,6 +533,17 @@
                 </h4>
                 <p class="text-sm text-neutral-400 mt-1">효과적인 교실 수업을 위한 스마트 모둠 편성 유틸리티</p>
             </div>
+            <!-- Item 11 (수정 반영) -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://app.notion.com/p/App-100-_Github-36b3fe97198b80aebc5bd9d7b6a50043?source=copy_link', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="app.jpg" alt="100개 앱(App) 개발 보러가기 #11" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>100개 앱(App) 개발 보러가기 #11</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">교육과 일상에 도움을 주는 100개의 앱을 개발 중</p>
+            </div>
         </div>
     </section>
 
@@ -589,7 +600,7 @@
         </div>
     </section>
 
-    <!-- 5. CONTACT (SNS 버튼들에 호버 시 흰색 배경 및 그림자 효과 클래스 적용) -->
+    <!-- 5. CONTACT -->
     <section id="contact" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10 text-center">
         <div class="max-w-3xl mx-auto space-y-8">
             <div>
@@ -735,7 +746,7 @@
             carousel.addEventListener('mouseenter', stopAutoScroll);
             carousel.addEventListener('mouseleave', startAutoScroll);
             carousel.addEventListener('touchstart', stopAutoScroll);
-            carousel.addEventListener('touchend', startAutoScroll);
+            carousel.addEventListener('touchend', stopAutoScroll);
         }
 
         // HOME 화면 유튜브 미니 카루셀 자동 스크롤 구현 (마우스 호버 시 일시 정지)
@@ -761,7 +772,7 @@
             ytCarousel.addEventListener('mouseenter', stopYtAutoScroll);
             ytCarousel.addEventListener('mouseleave', startYtAutoScroll);
             ytCarousel.addEventListener('touchstart', stopYtAutoScroll);
-            ytCarousel.addEventListener('touchend', startYtAutoScroll);
+            ytCarousel.addEventListener('touchend', stopYtAutoScroll);
         }
     </script>
 </body>
