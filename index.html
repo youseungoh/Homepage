@@ -15,6 +15,13 @@
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
             scroll-behavior: smooth;
             overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        * {
+            box-sizing: border-box;
         }
 
         /* 애플 스타일 글래스모피즘 네비게이션 */
@@ -172,32 +179,30 @@
         </div>
     </header>
 
-    <!-- 1. HOME (모바일 가로 잘림 방지 반응형 적용) -->
-    <section id="home" class="min-h-screen flex flex-col items-center justify-center relative px-4 text-center pt-24 pb-12 overflow-hidden">
+    <!-- 1. HOME (모바일 중앙 정렬 및 호버 가능한 상단 배지 링크 적용) -->
+    <section id="home" class="min-h-screen w-full flex flex-col items-center justify-center relative px-4 text-center pt-24 pb-12 overflow-hidden">
         <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-1"></div>
         <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-2"></div>
         
-        <div class="w-full max-w-4xl mx-auto z-10 space-y-3 group cursor-default px-2">
-            <span class="inline-block py-1 px-3 rounded-full bg-white/10 text-[11px] font-medium tracking-widest uppercase text-neutral-300 backdrop-blur-md border border-white/10 transition-all duration-300 group-hover:border-white/30 group-hover:scale-105">
+        <div class="w-full max-w-4xl mx-auto z-10 space-y-4 flex flex-col items-center justify-center cursor-default px-2">
+            <!-- Digital Creator & Innovator 버튼 (클릭 시 About 이동, 다크모드 호버시 흰색 / 라이트모드 반대) -->
+            <a href="#about" class="inline-block py-1.5 px-4 rounded-full bg-white/10 text-[11px] font-medium tracking-widest uppercase text-neutral-300 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black light:hover:bg-neutral-900 light:hover:text-white shadow-md">
                 Digital Creator & Innovator
-            </span>
-            <h1 class="text-2xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight transition-transform duration-500 group-hover:scale-[1.01] px-1">
+            </a>
+            
+            <h1 class="text-2xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight transition-transform duration-500 hover:scale-[1.01] px-1 w-full text-center">
                 상상을 현실로 만드는<br>
-                <span class="bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-transparent transition-all duration-500 group-hover:from-white group-hover:via-indigo-200 group-hover:to-purple-400">
+                <span class="bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-transparent transition-all duration-500 hover:from-white hover:via-indigo-200 hover:to-purple-400">
                     몰입의 디자인 스튜디오
                 </span>
             </h1>
-            <p class="text-xs sm:text-base md:text-lg text-neutral-400 max-w-xl mx-auto font-light transition-colors duration-300 group-hover:text-neutral-300 px-2">
+            
+            <p class="text-xs sm:text-base md:text-lg text-neutral-400 max-w-xl mx-auto font-light transition-colors duration-300 hover:text-neutral-300 px-2 w-full text-center">
                 최첨단 AI 기술과 미니멀한 감각으로 새로운 디지털 경험을 설계합니다.
             </p>
-            <div class="pt-1">
-                <a href="#about" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-neutral-900 text-white border border-white/20 font-semibold hover:bg-neutral-800 transition-all transform hover:scale-105 shadow-xl text-sm">
-                    탐색하기
-                </a>
-            </div>
 
             <!-- 유튜브 미니 영상 자동 스크롤 영역 -->
-            <div class="pt-4 w-full max-w-7xl mx-auto">
+            <div class="pt-2 w-full max-w-7xl mx-auto">
                 <div class="flex items-center justify-between mb-2 px-1">
                     <span class="text-[11px] sm:text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center">
                         <i data-lucide="youtube" class="w-4 h-4 mr-1.5 text-red-600"></i> Playlist PianoCanvas Latest Tracks
@@ -715,7 +720,7 @@
             carousel.addEventListener('mouseenter', stopAutoScroll);
             carousel.addEventListener('mouseleave', startAutoScroll);
             carousel.addEventListener('touchstart', stopAutoScroll);
-            carousel.addEventListener('touchend', startAutoScroll);
+            carousel.addEventListener('touchend', stopAutoScroll);
         }
 
         // HOME 화면 유튜브 미니 카루셀 자동 스크롤 구현 (마우스 호버 시 일시 정지)
@@ -741,7 +746,7 @@
             ytCarousel.addEventListener('mouseenter', stopYtAutoScroll);
             ytCarousel.addEventListener('mouseleave', startYtAutoScroll);
             ytCarousel.addEventListener('touchstart', stopYtAutoScroll);
-            ytCarousel.addEventListener('touchend', stopYtAutoScroll);
+            ytCarousel.addEventListener('touchend', startYtAutoScroll);
         }
     </script>
 </body>
