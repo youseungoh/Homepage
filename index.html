@@ -49,6 +49,26 @@
             color: #000000 !important;
         }
 
+        /* 유튜브 미니 카드 배경 항상 검정색 유지 */
+        .youtube-card {
+            flex: 0 0 145px;
+            width: 145px;
+            background-color: #000000 !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+        @media (min-width: 640px) {
+            .youtube-card {
+                flex: 0 0 180px;
+                width: 180px;
+            }
+        }
+        .youtube-card h5 {
+            color: #ffffff !important;
+        }
+        .youtube-card p {
+            color: #a3a3a3 !important;
+        }
+
         /* 서비스 카드 명확한 호버 효과(위로 떠오르며 그림자 강조) */
         .service-card {
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
@@ -89,18 +109,6 @@
             .work-card {
                 flex: 0 0 400px;
                 width: 400px;
-            }
-        }
-
-        /* 콤팩트하고 넓게 배치되는 유튜브 미니 카드 스타일 (반응형) */
-        .youtube-card {
-            flex: 0 0 145px;
-            width: 145px;
-        }
-        @media (min-width: 640px) {
-            .youtube-card {
-                flex: 0 0 180px;
-                width: 180px;
             }
         }
 
@@ -185,8 +193,8 @@
         <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-2"></div>
         
         <div class="w-full max-w-4xl mx-auto z-10 space-y-4 flex flex-col items-center justify-center cursor-default px-2">
-            <!-- Digital Creator & Innovator 배지 링크 -->
-            <a href="#about" class="inline-block py-1.5 px-4 rounded-full bg-white/10 text-[11px] font-medium tracking-widest uppercase text-neutral-300 backdrop-blur-md border border-white/10 transition-all duration-300 hover:bg-white hover:text-black dark:hover:bg-white dark:hover:text-black light:hover:bg-neutral-900 light:hover:text-white shadow-md">
+            <!-- 상단 Digital Creator & Innovator 버튼 -->
+            <a href="#services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-neutral-900 text-white border border-white/20 font-semibold hover:bg-white hover:text-neutral-900 transition-all transform hover:scale-105 shadow-xl text-xs uppercase tracking-widest">
                 Digital Creator & Innovator
             </a>
             
@@ -201,8 +209,8 @@
                 최첨단 AI 기술과 미니멀한 감각으로 새로운 디지털 경험을 설계합니다.
             </p>
 
-            <!-- 탐색하기 버튼 (호버 시 흰색 배경, 검정 글씨 적용) -->
-            <div class="pt-1">
+            <!-- 탐색하기 버튼 -->
+            <div class="pt-1 w-full flex justify-center">
                 <a href="#about" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-neutral-900 text-white border border-white/20 font-semibold hover:bg-white hover:text-neutral-900 transition-all transform hover:scale-105 shadow-xl text-sm">
                     탐색하기
                 </a>
@@ -219,148 +227,148 @@
                 <!-- 오토 스크롤 컨테이너 -->
                 <div id="youtube-carousel" class="flex overflow-x-auto space-x-3 px-1 no-scrollbar">
                     <!-- YouTube Item 1 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/7qtNkalqInY?si=Znao73KGVLFEi87M', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/7qtNkalqInY?si=Znao73KGVLFEi87M', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/7qtNkalqInY/mqdefault.jpg" alt="Track 01" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 01</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #01</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #01</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 2 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/sL-FbDZJC2M?si=sCdyN2Qwz79Tcuy8', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/sL-FbDZJC2M?si=sCdyN2Qwz79Tcuy8', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/sL-FbDZJC2M/mqdefault.jpg" alt="Track 02" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 02</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #02</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #02</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 3 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/yXKkQ-C6AJ8?si=AJGPt1elpT93DgBh', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/yXKkQ-C6AJ8?si=AJGPt1elpT93DgBh', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/yXKkQ-C6AJ8/mqdefault.jpg" alt="Track 03" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 03</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #03</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #03</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 4 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/9kFrsBeD2qw?si=jO4qu0Ao1uJ6CidG', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/9kFrsBeD2qw?si=jO4qu0Ao1uJ6CidG', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/9kFrsBeD2qw/mqdefault.jpg" alt="Track 04" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 04</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #04</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #04</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 5 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/uKz2wXjOHsU?si=YgJKylsNq6nrPhPG', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/uKz2wXjOHsU?si=YgJKylsNq6nrPhPG', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/uKz2wXjOHsU/mqdefault.jpg" alt="Track 05" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 05</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #05</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #05</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 6 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/4zwEgVjZo9c?si=ljE1syi0oV-u38tu', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/4zwEgVjZo9c?si=ljE1syi0oV-u38tu', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/4zwEgVjZo9c/mqdefault.jpg" alt="Track 06" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 06</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #06</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #06</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 7 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/7qtNkalqInY?si=ClBgeYlnkvutVOZv', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/7qtNkalqInY?si=ClBgeYlnkvutVOZv', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/7qtNkalqInY/mqdefault.jpg" alt="Track 07" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 07</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #07</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #07</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 8 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/iRpqLnFocWE?si=N3w_pqsO_lxdG-Oe', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/iRpqLnFocWE?si=N3w_pqsO_lxdG-Oe', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/iRpqLnFocWE/mqdefault.jpg" alt="Track 08" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 08</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #08</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #08</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 9 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/qNYK2qzHGFc?si=0Nh1qVlYWI1mr5Hv', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/qNYK2qzHGFc?si=0Nh1qVlYWI1mr5Hv', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/qNYK2qzHGFc/mqdefault.jpg" alt="Track 09" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 09</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #09</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #09</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 10 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/Gknb-vZuTGY?si=uJ8mYAhwS-C75Heb', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/Gknb-vZuTGY?si=uJ8mYAhwS-C75Heb', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/Gknb-vZuTGY/mqdefault.jpg" alt="Track 10" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 10</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #10</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #10</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 11 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/7zZgIDHcSds?si=udrbCT6TCx12KIIQ', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/7zZgIDHcSds?si=udrbCT6TCx12KIIQ', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/7zZgIDHcSds/mqdefault.jpg" alt="Track 11" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 11</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #11</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #11</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 12 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/uabwcl3mXQw?si=fW_Bpg9R6cHwvNT_', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/uabwcl3mXQw?si=fW_Bpg9R6cHwvNT_', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/uabwcl3mXQw/mqdefault.jpg" alt="Track 12" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 12</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #12</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #12</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 13 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/MEvdQFzrev0?si=CwwQj1kNU0QXc2vl', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/MEvdQFzrev0?si=CwwQj1kNU0QXc2vl', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/MEvdQFzrev0/mqdefault.jpg" alt="Track 13" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 13</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #13</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #13</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 14 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/sJGPKMs0bsw?si=aYol8QMGD6uK6lYI', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/sJGPKMs0bsw?si=aYol8QMGD6uK6lYI', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/sJGPKMs0bsw/mqdefault.jpg" alt="Track 14" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 14</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #14</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #14</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 15 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/qNYK2qzHGFc?si=r9ZY58C2uHehi-4k', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/qNYK2qzHGFc?si=r9ZY58C2uHehi-4k', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/qNYK2qzHGFc/mqdefault.jpg" alt="Track 15" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 15</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #15</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #15</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                     <!-- YouTube Item 16 -->
-                    <div class="youtube-card snap-start group cursor-pointer text-left bg-neutral-900/60 border border-white/10 rounded-xl p-2 hover:border-white/30 transition-all" onclick="window.open('https://youtu.be/pe5zmBWkitg?si=8kKzbBazB69owmEO', '_blank')">
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/pe5zmBWkitg?si=8kKzbBazB69owmEO', '_blank')">
                         <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
                             <img src="https://img.youtube.com/vi/pe5zmBWkitg/mqdefault.jpg" alt="Track 16" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
                             <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 16</span>
                         </div>
-                        <h5 class="text-[11px] font-medium text-white truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #16</h5>
-                        <p class="text-[10px] text-neutral-400 truncate">PianoCanvas</p>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #16</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
                     </div>
                 </div>
             </div>
@@ -581,7 +589,7 @@
         </div>
     </section>
 
-    <!-- 5. CONTACT -->
+    <!-- 5. CONTACT (SNS 버튼들에 호버 시 흰색 배경 및 그림자 효과 클래스 적용) -->
     <section id="contact" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10 text-center">
         <div class="max-w-3xl mx-auto space-y-8">
             <div>
@@ -602,35 +610,35 @@
 
             <!-- SNS 및 소셜 링크 버튼 영역 -->
             <div class="flex flex-wrap justify-center gap-3 sm:gap-4 pt-4">
-                <a href="https://youtube.com/@pianocanvas" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://youtube.com/@pianocanvas" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="youtube" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">YouTube</span>
                 </a>
-                <a href="https://github.com/youseungoh" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://github.com/youseungoh" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="github" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">GitHub</span>
                 </a>
-                <a href="https://www.facebook.com/yuseung.o.2025/" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://www.facebook.com/yuseung.o.2025/" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="facebook" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">Facebook</span>
                 </a>
-                <a href="https://www.instagram.com/hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://www.instagram.com/hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="instagram" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">Instagram</span>
                 </a>
-                <a href="https://www.threads.com/@hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://www.threads.com/@hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="at-sign" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">Threads</span>
                 </a>
-                <a href="https://www.tiktok.com/@pianocanvas2?_r=1&_t=ZS-98WJ8KIg0Y5" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://www.tiktok.com/@pianocanvas2?_r=1&_t=ZS-98WJ8KIg0Y5" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="video" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">TikTok</span>
                 </a>
-                <a href="https://1000sora.com" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="https://1000sora.com" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="book-open" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">Blog</span>
                 </a>
-                <a href="mailto:yso21@naver.com" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-black transition-all flex items-center space-x-2">
+                <a href="mailto:yso21@naver.com" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
                     <i data-lucide="mail" class="w-5 h-5"></i>
                     <span class="text-sm font-medium">Email</span>
                 </a>
