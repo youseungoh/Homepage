@@ -555,7 +555,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- App(앱) 개발 카드 (요청 문구 및 노션 링크 적용) -->
             <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://app.notion.com/p/App-100-_Github-36b3fe97198b80aebc5bd9d7b6a50043?source=copy_link', '_blank')">
                 <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
                     <span>App(앱) 개발</span>
@@ -759,6 +758,31 @@
             carousel.addEventListener('touchend', stopAutoScroll);
         }
 
-        --></script>
+        // HOME 화면 유튜브 미니 카루셀 자동 스크롤 구현 (마우스 호버 시 일시 정지)
+        const ytCarousel = document.getElementById('youtube-carousel');
+        let ytAutoScrollTimer;
+
+        function startYtAutoScroll() {
+            if (!ytCarousel) return;
+            ytAutoScrollTimer = setInterval(() => {
+                ytCarousel.scrollLeft += 1;
+                if (ytCarousel.scrollLeft >= (ytCarousel.scrollWidth - ytCarousel.clientWidth - 5)) {
+                    ytCarousel.scrollLeft = 0;
+                }
+            }, 30);
+        }
+
+        function stopYtAutoScroll() {
+            clearInterval(ytAutoScrollTimer);
+        }
+
+        if (ytCarousel) {
+            startYtAutoScroll();
+            ytCarousel.addEventListener('mouseenter', stopYtAutoScroll);
+            ytCarousel.addEventListener('mouseleave', startYtAutoScroll);
+            ytCarousel.addEventListener('touchstart', stopYtAutoScroll);
+            ytCarousel.addEventListener('touchend', stopYtAutoScroll);
+        }
+    </script>
 </body>
 </html>
