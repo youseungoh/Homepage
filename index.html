@@ -1,411 +1,790 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" class="dark">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hero — Scrolling Case Study Stack</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-<style>
-  :root{
-    --bg:#0d0d0d;
-    --orange:#ff4300;
-    --orange-deep:#b23000;
-    --card-dark:#161616;
-    --card-dark-2:#1e1e1e;
-    --off-white:#f2efe8;
-    --ink:#0d0d0d;
-    --muted:#8a887f;
-    --muted-2:#6b6b6b;
-    --line: rgba(255,255,255,0.14);
-  }
-  *{box-sizing:border-box; margin:0; padding:0;}
-  html,body{
-    background:var(--bg);
-    color:var(--off-white);
-    font-family:'Space Grotesk', sans-serif;
-    width:100%; height:100%;
-    overflow-x:hidden;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Y.Seungoh's Portfolio on the Website</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucid Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  .hero{
-    position:relative;
-    width:100%;
-    min-height:100vh;
-    display:grid;
-    grid-template-columns: 1.05fr 0.95fr;
-    background:var(--bg);
-    overflow:hidden;
-  }
+        * {
+            box-sizing: border-box;
+        }
 
-  /* ---------- LEFT: copy ---------- */
-  .hero-copy{
-    position:relative;
-    z-index:3;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    padding: 8vh 5vw 8vh 6vw;
-  }
-  .eyebrow{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:13px;
-    letter-spacing:0.18em;
-    text-transform:uppercase;
-    color:var(--muted);
-    margin-bottom:28px;
-  }
-  .eyebrow::before{
-    content:"";
-    width:28px;
-    height:2px;
-    background:var(--orange);
-    display:inline-block;
-  }
-  .icon{ width:15px; height:15px; stroke-width:1.8; vertical-align:-2px; flex-shrink:0; }
-  .icon-orange{ color:var(--orange); }
-  .icon-muted{ color:var(--muted); }
-  .stat-icon{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    width:28px; height:28px;
-    border-radius:50%;
-    border:1px solid var(--line);
-    margin-bottom:10px;
-  }
-  .headline{
-    font-family:'Archivo Black', sans-serif;
-    font-weight:400;
-    font-size: clamp(40px, 5.4vw, 76px);
-    line-height:1.02;
-    letter-spacing:-0.01em;
-    margin-bottom:28px;
-  }
-  .headline em{
-    font-style:normal;
-    color:var(--orange);
-  }
-  .sub{
-    font-size:16px;
-    line-height:1.7;
-    color:#c9c6be;
-    max-width:460px;
-    margin-bottom:44px;
-  }
-  .cta-row{
-    display:flex;
-    align-items:center;
-    gap:28px;
-  }
-  .btn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    background:#ffffff;
-    color:#0d0d0d;
-    font-weight:700;
-    font-size:14px;
-    letter-spacing:0.02em;
-    padding:16px 28px;
-    border-radius:999px;
-    border:1.5px solid #ffffff;
-    text-decoration:none;
-    transition:transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
-  }
-  .btn:hover{ transform:translateY(-2px); background:#0d0d0d; color:#ffffff; border-color:rgba(255,255,255,0.3); }
-  .btn svg{ width:16px; height:16px; }
-  .meta{
-    font-size:13px;
-    color:var(--muted-2);
-    letter-spacing:0.04em;
-    display:inline-flex;
-    align-items:center;
-  }
-  .stat-row{
-    display:flex;
-    gap:40px;
-    margin-top:64px;
-    border-top:1px solid var(--line);
-    padding-top:24px;
-    max-width:480px;
-  }
-  .stat{ display:flex; flex-direction:column; }
-  .stat b{
-    display:block;
-    font-family:'Archivo Black', sans-serif;
-    font-size:26px;
-    font-weight:400;
-    margin-bottom:4px;
-  }
-  .stat span{
-    font-size:12px;
-    color:var(--muted);
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-  }
+        /* 애플 스타일 글래스모피즘 네비게이션 */
+        .glass-nav {
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .light .glass-nav {
+            background: rgba(255, 255, 255, 0.75);
+        }
 
-  /* ---------- RIGHT: scrolling stack ---------- */
-  .stack-viewport{
-    position:relative;
-    overflow:hidden;
-    height:100vh;
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 88%, transparent 100%);
-  }
-  .stack-track{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    width:100%;
-    animation: scrollUp 34s linear infinite;
-  }
-  .stack-viewport:hover .stack-track{
-    animation-play-state: paused;
-  }
-  @keyframes scrollUp{
-    from{ transform:translateY(0); }
-    to{ transform:translateY(-50%); }
-  }
+        /* 라이트 모드 전용 네비게이션 호버 가독성 개선 */
+        .light header nav a:hover {
+            color: #000000 !important;
+        }
+        .light #mobile-menu {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-color: rgba(0, 0, 0, 0.1) !important;
+        }
+        .light #mobile-menu a {
+            color: #4b5563 !important;
+        }
+        .light #mobile-menu a:hover {
+            color: #000000 !important;
+        }
 
-  .slide{
-    width:340px;
-    min-height:200px;
-    border-radius:6px;
-    padding:22px 24px;
-    margin-top:-56px;
-    box-shadow:0 24px 40px -18px rgba(0,0,0,0.55);
-    position:relative;
-    flex-shrink:0;
-  }
-  .slide:nth-child(6n+1){ transform:rotate(-5deg) translateX(-18px); }
-  .slide:nth-child(6n+2){ transform:rotate(4deg) translateX(14px); }
-  .slide:nth-child(6n+3){ transform:rotate(-2deg) translateX(-6px); }
-  .slide:nth-child(6n+4){ transform:rotate(6deg) translateX(22px); }
-  .slide:nth-child(6n+5){ transform:rotate(-4deg) translateX(-14px); }
-  .slide:nth-child(6n+6){ transform:rotate(2deg) translateX(6px); }
+        /* 유튜브 미니 카드 배경 항상 검정색 유지 */
+        .youtube-card {
+            flex: 0 0 145px;
+            width: 145px;
+            background-color: #000000 !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        }
+        @media (min-width: 640px) {
+            .youtube-card {
+                flex: 0 0 180px;
+                width: 180px;
+            }
+        }
+        .youtube-card h5 {
+            color: #ffffff !important;
+        }
+        .youtube-card p {
+            color: #a3a3a3 !important;
+        }
 
-  .slide-eyebrow{
-    font-size:11px;
-    letter-spacing:0.14em;
-    text-transform:uppercase;
-    opacity:0.65;
-    margin-bottom:14px;
-  }
-  .slide-idx{
-    position:absolute;
-    top:18px; right:20px;
-    font-size:11px;
-    opacity:0.5;
-  }
+        /* 서비스 카드 명확한 호버 효과(위로 떠오르며 그림자 강조) */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        .light .service-card:hover {
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
+        }
 
-  /* variant: orange metric */
-  .v-orange{ background:var(--orange); color:#1a0800; }
-  .v-orange .slide-eyebrow{ color:#3a1200; opacity:0.75; }
-  .v-orange .big-num{
-    font-family:'Archivo Black', sans-serif;
-    font-size:64px;
-    line-height:0.9;
-    letter-spacing:-0.02em;
-  }
-  .v-orange .rule{
-    height:2px; background:rgba(0,0,0,0.25);
-    width:60%; margin-top:16px;
-  }
+        /* 푸터 링크 호버 색상 명확화 (다크모드: 흰색, 라이트모드: 검정색) */
+        footer a {
+            color: #a3a3a3;
+            transition: color 0.2s ease;
+        }
+        .dark footer a:hover {
+            color: #ffffff !important;
+        }
+        .light footer a:hover {
+            color: #000000 !important;
+        }
 
-  /* variant: dark process */
-  .v-process{ background:var(--card-dark); }
-  .v-process .step{
-    display:flex; align-items:baseline; gap:12px;
-    font-family:'Archivo Black', sans-serif;
-    font-size:22px;
-    padding:6px 0;
-    border-bottom:1px solid var(--line);
-  }
-  .v-process .step span{
-    font-size:12px; font-family:'Space Grotesk',sans-serif;
-    color:var(--muted); width:18px;
-  }
+        /* 아이폰 사파리 레이아웃 깨짐 방지용 고정 폭 카드 스타일 */
+        .work-card {
+            flex: 0 0 320px;
+            width: 320px;
+        }
+        @media (min-width: 640px) {
+            .work-card {
+                flex: 0 0 380px;
+                width: 380px;
+            }
+        }
+        @media (min-width: 768px) {
+            .work-card {
+                flex: 0 0 400px;
+                width: 400px;
+            }
+        }
 
-  /* variant: off-white opportunity */
-  .v-white{ background:var(--off-white); color:var(--ink); }
-  .v-white .slide-eyebrow{ color:var(--muted-2); }
-  .v-white .op-title{
-    font-family:'Archivo Black', sans-serif;
-    font-size:26px;
-    margin:8px 0 6px;
-  }
-  .v-white .op-line{
-    height:1px; background:rgba(0,0,0,0.15);
-    margin:10px 0;
-  }
-  .v-white .swatch{
-    position:absolute; top:18px; right:18px;
-    width:64px; height:64px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #ffffff, #cfcbc0 70%);
-    box-shadow:0 6px 14px rgba(0,0,0,0.18);
-  }
+        /* 물결치듯 흐르는 오로라 배경 애니메이션 */
+        @keyframes wave-aurora {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(40px, -60px) scale(1.2); }
+            66% { transform: translate(-30px, 30px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .animate-wave-1 {
+            animation: wave-aurora 10s ease infinite;
+        }
+        .animate-wave-2 {
+            animation: wave-aurora 14s ease infinite reverse;
+        }
 
-  /* variant: dark portrait metrics */
-  .v-metric{ background:var(--card-dark-2); display:flex; gap:18px; }
-  .v-metric .portrait{
-    width:70px; height:100%; min-height:130px;
-    border-radius:4px;
-    background:linear-gradient(160deg,#3a3a3a,#0d0d0d 70%);
-    flex-shrink:0;
-  }
-  .v-metric .metric-body{ flex:1; }
-  .v-metric .metric-grid{
-    display:grid; grid-template-columns:1fr 1fr 1fr;
-    gap:8px; margin-top:10px;
-  }
-  .v-metric .metric-grid b{
-    display:block; font-family:'Archivo Black', sans-serif;
-    font-size:20px; font-weight:400;
-  }
-  .v-metric .metric-grid span{
-    font-size:10px; color:var(--muted); text-transform:uppercase;
-  }
-  .v-metric .bars{ display:flex; gap:4px; margin-top:14px; }
-  .v-metric .bars i{ width:22px; height:8px; border-radius:1px; display:block; }
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
 
-  /* variant: wordmark cover */
-  .v-word{ background:var(--orange-deep); color:var(--off-white); }
-  .v-word .word{
-    font-family:'Archivo Black', sans-serif;
-    font-size:40px;
-    line-height:0.95;
-  }
-  .v-word .word-sub{
-    margin-top:14px; font-size:11px; letter-spacing:0.12em;
-    text-transform:uppercase; opacity:0.7;
-  }
-
-  .site-footer{
-    background:var(--bg);
-    color:#4a4a46;
-    font-size:12px;
-    letter-spacing:0.02em;
-    text-align:center;
-    padding:22px 20px;
-    border-top:1px solid var(--line);
-  }
-  .site-footer a{
-    color:#5c5c57;
-    text-decoration:none;
-    transition:color .2s ease;
-  }
-  .site-footer a:hover{ color:#8a887f; }
-  .site-footer .yt-link{ font-weight:700; }
-  .site-footer .yt-link:hover{ color:var(--orange); }
-
-  @media (max-width: 900px){
-    .hero{ grid-template-columns:1fr; }
-    .stack-viewport{ height:52vh; }
-    .hero-copy{ padding: 6vh 6vw 4vh; order:1; }
-    .stack-viewport{ order:2; }
-    .stat-row{ display:none; }
-  }
-</style>
+        /* 케러셀 스크롤바 숨기기 및 iOS 터치 스크롤 최적화 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-[#0b0b0c] text-[#f5f5f7] transition-colors duration-300">
 
-<section class="hero">
+    <!-- 네비게이션 바 -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-nav border-b border-white/10 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#home" class="text-lg font-semibold tracking-tight hover:opacity-85 transition-opacity">
+                Y. SEUNGOH
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-neutral-400">
+                <a href="#home" class="hover:text-white transition-colors">HOME</a>
+                <a href="#about" class="hover:text-white transition-colors">ABOUT</a>
+                <a href="#work" class="hover:text-white transition-colors">WORK</a>
+                <a href="#services" class="hover:text-white transition-colors">SERVICES</a>
+                <a href="#contact" class="hover:text-white transition-colors">CONTACT</a>
+            </nav>
 
-  <div class="hero-copy">
-    <div class="eyebrow"><i data-lucide="sparkles" class="icon icon-orange"></i>Y.SEUNGOH · Portfolio</div>
-    <h1 class="headline">생성형 AI로<br><em>디자인하는</em> 새로운 수업</h1>
-    <p class="sub">
-      프롬프트 엔지니어링부터 바이브 코딩 App(앱) 개발, 개인 포트폴리오 홈페이지 제작 그리고
-      개발자들의 자존심 GitHub 배포까지 한 차원 높은 마스터링 연수입니다.
-      생성형 AI GPT · Gemini · Claude · Copilot · Grok · Meta AI · Perplexity · Genspark ·
-      Midjourney · SUNO · NotebookLM · Hedra AI Digital Creator를 지향합니다.
-    </p>
-    <div class="cta-row">
-      <a class="btn" href="https://youseungoh.github.io/Homepage/" target="_blank" rel="noopener noreferrer">
-        PORTPOLIO
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-          <path d="M5 12h14M13 6l6 6-6 6"/>
-        </svg>
-      </a>
-      <span class="meta"><i data-lucide="calendar" class="icon icon-muted"></i>&nbsp;August 4, 2026</span>
-    </div>
-    <div class="stat-row">
-      <div class="stat">
-        <div class="stat-icon"><i data-lucide="layers" class="icon icon-orange"></i></div>
-        <b>6+</b><span>VIBE CODE DESIGN</span>
-      </div>
-      <div class="stat">
-        <div class="stat-icon"><i data-lucide="trending-up" class="icon icon-orange"></i></div>
-        <b>4.76M</b><span>콘텐츠 도달</span>
-      </div>
-      <div class="stat">
-        <div class="stat-icon"><i data-lucide="layout-template" class="icon icon-orange"></i></div>
-        <b>48</b><span>제작 슬라이드</span>
-      </div>
-    </div>
-  </div>
+            <div class="flex items-center space-x-4">
+                <!-- 다크/라이트 모드 토글 버튼 -->
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer" aria-label="Toggle theme">
+                    <i data-lucide="moon" id="theme-icon" class="w-5 h-5"></i>
+                </button>
+                <!-- 모바일 메뉴 버튼 -->
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-neutral-400 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+        <!-- 모바일 드롭다운 네비게이션 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 border-b border-white/10 px-6 py-4 space-y-3">
+            <a href="#home" class="block text-neutral-400 hover:text-white py-1">HOME</a>
+            <a href="#about" class="block text-neutral-400 hover:text-white py-1">ABOUT</a>
+            <a href="#work" class="block text-neutral-400 hover:text-white py-1">WORK</a>
+            <a href="#services" class="block text-neutral-400 hover:text-white py-1">SERVICES</a>
+            <a href="#contact" class="block text-neutral-400 hover:text-white py-1">CONTACT</a>
+        </div>
+    </header>
 
-  <div class="stack-viewport">
-    <div class="stack-track" id="track"></div>
-  </div>
+    <!-- 1. HOME -->
+    <section id="home" class="min-h-screen w-full flex flex-col items-center justify-center relative px-4 text-center pt-24 pb-12 overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-96 h-96 bg-indigo-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-1"></div>
+        <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] pointer-events-none animate-wave-2"></div>
+        
+        <div class="w-full max-w-4xl mx-auto z-10 space-y-4 flex flex-col items-center justify-center cursor-default px-2">
+            <!-- 상단 Digital Creator & Innovator 버튼 -->
+            <a href="#services" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-neutral-900 text-white border border-white/20 font-semibold hover:bg-white hover:text-neutral-900 transition-all transform hover:scale-105 shadow-xl text-xs uppercase tracking-widest">
+                Digital Creator & Innovator
+            </a>
+            
+            <h1 class="text-2xl sm:text-4xl md:text-6xl font-bold tracking-tight leading-tight transition-transform duration-500 hover:scale-[1.01] px-1 w-full text-center">
+                상상을 현실로 만드는<br>
+                <span class="bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-600 bg-clip-text text-transparent transition-all duration-500 hover:from-white hover:via-indigo-200 hover:to-purple-400">
+                    몰입의 디자인 스튜디오
+                </span>
+            </h1>
+            
+            <p class="text-xs sm:text-base md:text-lg text-neutral-400 max-w-xl mx-auto font-light transition-colors duration-300 hover:text-neutral-300 px-2 w-full text-center">
+                최첨단 AI 기술과 미니멀한 감각으로 새로운 디지털 경험을 설계합니다.
+            </p>
 
-</section>
+            <!-- 탐색하기 버튼 -->
+            <div class="pt-1 w-full flex justify-center">
+                <a href="#about" class="inline-flex items-center justify-center px-6 py-2.5 rounded-full bg-neutral-900 text-white border border-white/20 font-semibold hover:bg-white hover:text-neutral-900 transition-all transform hover:scale-105 shadow-xl text-sm">
+                    탐색하기
+                </a>
+            </div>
 
-<footer class="site-footer">
-  © Produced by You Seungoh. <a href="mailto:yso21@naver.com">yso21@naver.com</a>
-  &nbsp;|&nbsp;
-  <a href="https://youtube.com/@pianocanvas" target="_blank" rel="noopener noreferrer" class="yt-link">youtube.com/@pianocanvas</a>
-  &nbsp;|&nbsp; Healing Pop Music
-</footer>
+            <!-- 유튜브 미니 영상 자동 스크롤 영역 -->
+            <div class="pt-4 w-full max-w-7xl mx-auto">
+                <div class="flex items-center justify-between mb-2 px-1">
+                    <span class="text-[11px] sm:text-xs uppercase tracking-widest text-neutral-400 font-semibold flex items-center">
+                        <i data-lucide="youtube" class="w-4 h-4 mr-1.5 text-red-600"></i> Playlist PianoCanvas Latest Tracks
+                    </span>
+                    <span class="text-[10px] sm:text-[11px] text-neutral-500">Auto Scrolling</span>
+                </div>
+                <!-- 오토 스크롤 컨테이너 -->
+                <div id="youtube-carousel" class="flex overflow-x-auto space-x-3 px-1 no-scrollbar">
+                    <!-- YouTube Item 1 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/7qtNkalqInY?si=Znao73KGVLFEi87M', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/7qtNkalqInY/mqdefault.jpg" alt="Track 01" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 01</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #01</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 2 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/sL-FbDZJC2M?si=sCdyN2Qwz79Tcuy8', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/sL-FbDZJC2M/mqdefault.jpg" alt="Track 02" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 02</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #02</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 3 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/yXKkQ-C6AJ8?si=AJGPt1elpT93DgBh', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/yXKkQ-C6AJ8/mqdefault.jpg" alt="Track 03" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 03</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #03</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 4 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/9kFrsBeD2qw?si=jO4qu0Ao1uJ6CidG', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/9kFrsBeD2qw/mqdefault.jpg" alt="Track 04" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 04</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #04</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 5 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/uKz2wXjOHsU?si=YgJKylsNq6nrPhPG', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/uKz2wXjOHsU/mqdefault.jpg" alt="Track 05" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 05</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #05</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 6 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/4zwEgVjZo9c?si=ljE1syi0oV-u38tu', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/4zwEgVjZo9c/mqdefault.jpg" alt="Track 06" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 06</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #06</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 7 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/7qtNkalqInY?si=ClBgeYlnkvutVOZv', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/7qtNkalqInY/mqdefault.jpg" alt="Track 07" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 07</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #07</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 8 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/iRpqLnFocWE?si=N3w_pqsO_lxdG-Oe', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/iRpqLnFocWE/mqdefault.jpg" alt="Track 08" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 08</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #08</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 9 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/qNYK2qzHGFc?si=0Nh1qVlYWI1mr5Hv', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/qNYK2qzHGFc/mqdefault.jpg" alt="Track 09" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 09</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #09</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 10 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/Gknb-vZuTGY?si=uJ8mYAhwS-C75Heb', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/Gknb-vZuTGY/mqdefault.jpg" alt="Track 10" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 10</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #10</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 11 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/7zZgIDHcSds?si=udrbCT6TCx12KIIQ', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/7zZgIDHcSds/mqdefault.jpg" alt="Track 11" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 11</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #11</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 12 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/uabwcl3mXQw?si=fW_Bpg9R6cHwvNT_', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/uabwcl3mXQw/mqdefault.jpg" alt="Track 12" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 12</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #12</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 13 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/MEvdQFzrev0?si=CwwQj1kNU0QXc2vl', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/MEvdQFzrev0/mqdefault.jpg" alt="Track 13" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 13</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #13</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 14 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/sJGPKMs0bsw?si=aYol8QMGD6uK6lYI', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/sJGPKMs0bsw/mqdefault.jpg" alt="Track 14" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 14</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #14</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 15 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/qNYK2qzHGFc?si=r9ZY58C2uHehi-4k', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/qNYK2qzHGFc/mqdefault.jpg" alt="Track 15" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 15</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #15</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                    <!-- YouTube Item 16 -->
+                    <div class="youtube-card snap-start group cursor-pointer text-left rounded-xl p-2 transition-all" onclick="window.open('https://youtu.be/pe5zmBWkitg?si=8kKzbBazB69owmEO', '_blank')">
+                        <div class="h-20 sm:h-24 rounded-lg bg-neutral-800 overflow-hidden relative mb-1.5 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/pe5zmBWkitg/mqdefault.jpg" alt="Track 16" style="width: 100%; height: 100%; object-fit: cover;" class="group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-1 right-1 z-20 bg-black/70 text-[9px] px-1 py-0.5 rounded text-white">Track 16</span>
+                        </div>
+                        <h5 class="text-[11px] font-medium truncate group-hover:text-indigo-300 transition-colors">감성 카페 팝 음악 #16</h5>
+                        <p class="text-[10px] truncate">PianoCanvas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-  const slidesData = [
-    {v:'v-orange', html:`<div class="slide-eyebrow"><i data-lucide="rocket" class="icon"></i>&nbsp;Session 01</div><div class="big-num">01</div><div class="rule"></div>
-      <div style="margin-top:14px; font-size:13px; font-weight:700;">바이브 코딩의 이해와<br>교실 맞춤형 앱 소개</div>`},
-    {v:'v-process', html:`<div class="slide-eyebrow"><i data-lucide="bot" class="icon"></i>&nbsp;Session 02 · Build</div>
-      <div class="step"><span>01</span>생성형 AI 앱</div>
-      <div class="step"><span>02</span>개인 홈페이지</div>
-      <div class="step"><span>03</span>Canva 제작</div>`},
-    {v:'v-white', html:`<div class="swatch"></div><div class="slide-eyebrow"><i data-lucide="terminal" class="icon"></i>&nbsp;Session 03 · Claude Code</div>
-      <div class="op-title">웹 앱 기획</div><div class="op-line"></div>
-      <div class="op-title">나만의 제작</div><div class="op-line"></div>`},
-    {v:'v-metric', html:`<div class="portrait"></div><div class="metric-body">
-      <div class="slide-eyebrow"><i data-lucide="database" class="icon"></i>&nbsp;Session 04 · 공공데이터</div>
-      <div class="metric-grid">
-        <div><b>API</b><span>공공데이터</span></div>
-        <div><b>6+</b><span>실습앱</span></div>
-        <div><b>1</b><span>기획안</span></div>
-      </div>
-      <div class="bars"><i style="background:var(--orange)"></i><i style="background:var(--orange)"></i><i style="background:#fff"></i><i style="background:#444"></i></div>
-      </div>`},
-    {v:'v-word', html:`<div class="word">Git<br>Hub</div><div class="word-sub"><i data-lucide="github" class="icon"></i>&nbsp;Session 05 · 배포</div>`},
-    {v:'v-process', html:`<div class="slide-eyebrow"><i data-lucide="share-2" class="icon"></i>&nbsp;Session 06 · Share</div>
-      <div class="step"><span>04</span>수업 적용</div>
-      <div class="step"><span>05</span>학생 공유</div>
-      <div class="step"><span>06</span>피드백</div>`},
-  ];
+    <!-- 2. ABOUT -->
+    <section id="about" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="space-y-6">
+                <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold">About Me</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">유승오 (You Seungoh)</h3>
+                <p class="text-neutral-400 leading-relaxed font-light">
+                    교육 현장의 혁신부터 최첨단 AI 크리에이티브 영역까지 아우르는 멀티 크리에이터입니다. 기술과 인문학의 경계를 넘어 깊은 통찰을 전달합니다.
+                </p>
+                <div class="flex flex-wrap gap-2.5 pt-2">
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전주서곡중(교장)</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)미래교육원 원장</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)교육장</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)정책공보 장학관</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">카카오 브런치 글쓰기 작가</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">전)전북대 대학원 교육학 임용논술 겸임교수</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">칼럼니스트</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">App Developer</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">Digital Creator</span>
+                    <span class="px-4 py-2 bg-neutral-900 border border-white/20 rounded-full text-xs text-white font-medium shadow-md">Youtube Creator</span>
+                </div>
+            </div>
+            <div class="bg-neutral-900 border border-white/10 p-8 rounded-3xl space-y-6 shadow-2xl">
+                <h4 class="text-2xl font-bold text-white tracking-tight">핵심 가치 & 비전</h4>
+                <p class="text-sm text-neutral-300 leading-relaxed font-light">
+                    "단순함은 궁극의 정교함이다." 교육과 기술의 융합을 통해 누구나 쉽게 이해하고 영감을 얻을 수 있는 콘텐츠를 창조합니다. 본질에 집중하는 미니멀리즘을 지향합니다.
+                </p>
+            </div>
+        </div>
+    </section>
 
-  function buildSlide(i, data){
-    return `<div class="slide ${data.v}"><div class="slide-idx">${String(i).padStart(2,'0')}</div>${data.html}</div>`;
-  }
+    <!-- 3. WORK -->
+    <section id="work" class="py-24 sm:py-32 border-t border-white/10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex justify-between items-end">
+            <div>
+                <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-2">Selected Work</h2>
+                <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">앱(App)개발 프로젝트 아카이브</h3>
+            </div>
+            <div class="hidden md:flex space-x-3">
+                <button id="slide-left" class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+                    <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                </button>
+                <button id="slide-right" class="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer">
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
 
-  const track = document.getElementById('track');
-  let html = '';
-  const total = 15;
-  for(let round=0; round<2; round++){
-    for(let i=0; i<total; i++){
-      const d = slidesData[i % slidesData.length];
-      html += buildSlide(i+1, d);
-    }
-  }
-  track.innerHTML = html;
-  if(window.lucide){ lucide.createIcons(); }
-</script>
+        <div id="carousel-container" class="flex overflow-x-auto space-x-6 px-6 no-scrollbar">
+            <!-- Item 1 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/money/', '_blank')">
+                <div class="h-64 rounded-2xl bg-white border border-white/10 overflow-hidden relative mb-4 p-4 flex items-center justify-center">
+                    <img src="work1-qr.png" alt="QR 코드 생성기 #01" style="width: 100%; height: 100%; object-fit: contain;" class="group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>QR 코드 생성기 #01</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">웹 기반 실시간 QR 코드 생성, URL, WiFi, 전화, 문자, 명함</p>
+            </div>
+            <!-- Item 2 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/wordcloud/', '_blank')">
+                <div class="h-64 rounded-2xl bg-white border border-white/10 overflow-hidden relative mb-4 p-4 flex items-center justify-center">
+                    <img src="wordcloud.jpg" alt="워드크라우드 #02" style="width: 100%; height: 100%; object-fit: contain;" class="group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>워드크라우드(WordCloud) #02</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">보고서나 글에서 중요한 워드(키워드)를 분석</p>
+            </div>
+            <!-- Item 3 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Health/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="ice-cream.jpg" alt="기초대사량 분석 #03" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>기초대사량 분석(운동별 칼로리 소모량, 주간식단) #03</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">운동별 칼로리 소모량, 주간식단</p>
+            </div>
+            <!-- Item 4 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/calli/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="calli.jpg" alt="사진과 캘리 합성 #04" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>사진과 캘리 합성(Calli Academy) #04</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">감성적인 캘리그라피와 자연 사진의 아름다운 조화</p>
+            </div>
+            <!-- Item 5 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/essay/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="bookstore.jpg" alt="논리논술 #05" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>논리논술(초중고 논술 교사) #05</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">초중고 학생들을 위한 논리적 사고 및 논술 지도 전문 프로그램</p>
+            </div>
+            <!-- Item 6 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/TelePrompter/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="teleprompter.jpg" alt="TelePrompter #06" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>TelePrompter(대본 프롬프터) #06</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">말하기와 발표를 위한 스마트 대본 프롬프터 유틸리티</p>
+            </div>
+            <!-- Item 7 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Tour/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="touro.jpg" alt="TourRo #07" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>TourRo(투어로) 우리나라 구석구석 #07</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">관광지, 맛집, 축제, 숙박, 올레길 안내</p>
+            </div>
+            <!-- Item 8 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Remove_bg/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="remover.jpg" alt="Remove_bg 앱 #08" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>Remove_bg(배경제거) 앱 #08</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">배경을 손쉽게 제거, 사이즈도 줄여줘요.</p>
+            </div>
+            <!-- Item 9 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/ChildHeight/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="height.jpg" alt="Child Height Prediction #09" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>Child Height Prediction(아이 키 성장 예측) 앱 #09</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">아이의 예상 키와 성장을 예측해주는 스마트 성장 관리 앱</p>
+            </div>
+            <!-- Item 10 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://youseungoh.github.io/Class_Group/', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="class-group.jpg" alt="교실 수업 모둠 편성기 #10" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>교실 수업 모둠 편성기 #10</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">효과적인 교실 수업을 위한 스마트 모둠 편성 유틸리티</p>
+            </div>
+            <!-- Item 11 -->
+            <div class="work-card snap-start group cursor-pointer" onclick="window.open('https://app.notion.com/p/App-100-_Github-36b3fe97198b80aebc5bd9d7b6a50043?source=copy_link', '_blank')">
+                <div class="h-64 rounded-2xl bg-neutral-900 border border-white/10 overflow-hidden relative mb-4 flex items-center justify-center">
+                    <img src="app.jpg" alt="100개 앱(App) 개발 보러가기 #11" style="width: 100%; height: 100%; object-fit: cover;" class="opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-transform duration-500">
+                </div>
+                <h4 class="font-semibold text-lg flex items-center justify-between">
+                    <span>100개 앱(App) 개발 보러가기 #11</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400"></i>
+                </h4>
+                <p class="text-sm text-neutral-400 mt-1">교육과 일상에 도움을 주는 100개의 앱을 개발 중</p>
+            </div>
+        </div>
+    </section>
 
+    <!-- 4. SERVICES -->
+    <section id="services" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10">
+        <div class="mb-16">
+            <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-2">Expertise & Services</h2>
+            <h3 class="text-3xl md:text-4xl font-bold tracking-tight">제공 서비스 및 전문 영역</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://app.notion.com/p/App-100-_Github-36b3fe97198b80aebc5bd9d7b6a50043?source=copy_link', '_blank')">
+                <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
+                    <span>App(앱) 개발</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400 group-hover:text-black transition-colors"></i>
+                </h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">학생들의 역량개발을 위한 학교 교실수업에서 활용하는 앱과 일상에 도움을 주는 실용적인 앱 개발</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
+                <h4 class="text-xl font-semibold mb-3">AI 강의</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">SUNO, Midjourney, GPT, Gemini, Claude, NotebookLM, Hedra 등 최신 AI 마스터 클래스</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
+                <h4 class="text-xl font-semibold mb-3">AI Digital Creator</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">생성형 AI를 활용한 차세대 미디어 콘텐츠 및 크리에이티브 프로덕션</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://www.instagram.com/hangl_calli', '_blank')">
+                <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
+                    <span>로고 디자인 & 캘리그라피</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400 group-hover:text-black transition-colors"></i>
+                </h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">브랜드의 본질을 담아내는 감각적인 로고와 아날로그 감성의 캘리그라피, 로고 디자이너와 캘리 작가로 활동하고 있음</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
+                <h4 class="text-xl font-semibold mb-3">전북대 대학원 교육학 임용논술</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">전북대학교 대학원 교육학 임용 및 논술 지도 (겸임교수)</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
+                <h4 class="text-xl font-semibold mb-3">교육학이 교실속으로 집필</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">교육학 이론을 실제 학교 교실 수업에 생생하게 적용하는 도서 집필, AI를 활용 책쓰기와 퍼블리싱 컨설팅</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://brunch.co.kr/@yso21', '_blank')">
+                <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
+                    <span>칼럼니스트 & Kakao 브런치 작가</span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400 group-hover:text-black transition-colors"></i>
+                </h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">신문사 월간 ’월요 건강 칼럼‘을 기고하여, 계절에 맞는 시의성 있는 내용으로 건강 칼럼을 쓰고 있음</p>
+            </div>
+            <!-- 사주 / 타로 1급 상담사 카드 (요청 사항 반영) -->
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg">
+                <h4 class="text-xl font-semibold mb-3">사주 / 타로 1급 상담사</h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">인문의 깊이와 현대적 해석을 더한 전문적인 사주 및 타로 카운셀링</p>
+            </div>
+            <div class="service-card p-8 rounded-3xl bg-white text-neutral-900 border border-neutral-200 shadow-lg cursor-pointer group" onclick="window.open('https://youtube.com/@pianocanvas', '_blank')">
+                <h4 class="text-xl font-semibold mb-3 flex items-center justify-between">
+                    <span class="flex items-center">
+                        <i data-lucide="youtube" class="w-6 h-6 mr-2 text-red-600"></i>
+                        Youtube Creator
+                    </span>
+                    <i data-lucide="external-link" class="w-4 h-4 text-neutral-400 group-hover:text-black transition-colors"></i>
+                </h4>
+                <p class="text-sm text-neutral-600 font-light leading-relaxed">힐링 팝 음악 유튜브 채널(PianoCanvas) 운영, 고급 카페에서 듣는 감성 팝 음악(pop music)으로, 모든 노래는 '사랑'을 주제로 작사작곡하여 만들고 있습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. CONTACT -->
+    <section id="contact" class="py-24 sm:py-32 px-6 max-w-7xl mx-auto border-t border-white/10 text-center">
+        <div class="max-w-3xl mx-auto space-y-8">
+            <div>
+                <h2 class="text-xs uppercase tracking-widest text-neutral-500 font-semibold mb-2">Get In Touch</h2>
+                <h3 class="text-3xl md:text-4xl font-bold tracking-tight">연결 및 소통하기</h3>
+                <p class="text-neutral-400 mt-2 font-light">다양한 플랫폼과 QR 코드를 통해 더 빠르게 소통해 보세요.</p>
+            </div>
+
+            <!-- 전화번호 자동 연결 QR 코드 삽입 -->
+            <div class="flex justify-center mb-6">
+                <div class="p-5 rounded-2xl bg-neutral-900 border border-white/10 flex flex-col items-center space-y-3 shadow-xl inline-block">
+                    <div class="w-36 h-36 bg-white p-2 rounded-xl overflow-hidden flex items-center justify-center">
+                        <img src="qr-code.png" alt="Phone QR Code" class="w-full h-full object-contain">
+                    </div>
+                    <span class="text-xs text-neutral-400 tracking-wider font-semibold">SCAN QR CODE</span>
+                </div>
+            </div>
+
+            <!-- SNS 및 소셜 링크 버튼 영역 -->
+            <div class="flex flex-wrap justify-center gap-3 sm:gap-4 pt-4">
+                <a href="https://youtube.com/@pianocanvas" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="youtube" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">YouTube</span>
+                </a>
+                <a href="https://github.com/youseungoh" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="github" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">GitHub</span>
+                </a>
+                <a href="https://www.facebook.com/yuseung.o.2025/" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="facebook" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Facebook</span>
+                </a>
+                <a href="https://www.instagram.com/hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Instagram</span>
+                </a>
+                <a href="https://www.threads.com/@hangl_calli" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="at-sign" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Threads</span>
+                </a>
+                <a href="https://www.tiktok.com/@pianocanvas2?_r=1&_t=ZS-98WJ8KIg0Y5" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="video" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">TikTok</span>
+                </a>
+                <a href="https://1000sora.com" target="_blank" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Blog</span>
+                </a>
+                <a href="mailto:yso21@naver.com" class="p-4 rounded-2xl bg-neutral-900 border border-white/10 text-white hover:bg-white hover:text-neutral-900 hover:shadow-xl transition-all flex items-center space-x-2">
+                    <i data-lucide="mail" class="w-5 h-5"></i>
+                    <span class="text-sm font-medium">Email</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 -->
+    <footer class="py-10 px-6 border-t border-white/10 text-center text-xs text-neutral-500 leading-snug">
+        <div class="block md:hidden space-y-1">
+            <p>©Produced by You Seungoh. yso21@naver.com</p>
+            <p><a href="https://youtube.com/@pianocanvas" target="_blank" class="underline">youtube.com/@pianocanvas</a> &nbsp;|&nbsp; Healing Pop Music</p>
+        </div>
+        <div class="hidden md:block">
+            <p>©Produced by You Seungoh. yso21@naver.com &nbsp;|&nbsp; <a href="https://youtube.com/@pianocanvas" target="_blank" class="underline">youtube.com/@pianocanvas</a> &nbsp;|&nbsp; Healing Pop Music</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript 로직 -->
+    <script>
+        // Lucide 아이콘 초기화
+        lucide.createIcons();
+
+        // 모바일 메뉴 토글
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 모바일 메뉴 클릭 시 자동 닫힘
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 다크/라이트 모드 토글 기능
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                document.body.classList.remove('bg-[#0b0b0c]', 'text-[#f5f5f7]');
+                document.body.classList.add('bg-[#ffffff]', 'text-[#1d1d1f]');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+                document.body.classList.remove('bg-[#ffffff]', 'text-[#1d1d1f]');
+                document.body.classList.add('bg-[#0b0b0c]', 'text-[#f5f5f7]');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        });
+
+        // WORK 케러셀 좌우 버튼 스크롤 제어 및 자동 스크롤 구현
+        const carousel = document.getElementById('carousel-container');
+        const slideLeft = document.getElementById('slide-left');
+        const slideRight = document.getElementById('slide-right');
+
+        if (slideLeft && slideRight && carousel) {
+            slideLeft.addEventListener('click', () => {
+                carousel.scrollBy({ left: -420, behavior: 'smooth' });
+            });
+            slideRight.addEventListener('click', () => {
+                carousel.scrollBy({ left: 420, behavior: 'smooth' });
+            });
+        }
+
+        let autoScrollTimer;
+        const scrollSpeed = 1;
+        const scrollInterval = 30;
+
+        function startAutoScroll() {
+            if (!carousel) return;
+            autoScrollTimer = setInterval(() => {
+                carousel.scrollLeft += scrollSpeed;
+                if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth - 5)) {
+                    carousel.scrollLeft = 0;
+                }
+            }, scrollInterval);
+        }
+
+        function stopAutoScroll() {
+            clearInterval(autoScrollTimer);
+        }
+
+        if (carousel) {
+            startAutoScroll();
+            carousel.addEventListener('mouseenter', stopAutoScroll);
+            carousel.addEventListener('mouseleave', startAutoScroll);
+            carousel.addEventListener('touchstart', stopAutoScroll);
+            carousel.addEventListener('touchend', stopAutoScroll);
+        }
+
+        // HOME 화면 유튜브 미니 카루셀 자동 스크롤 구현 (마우스 호버 시 일시 정지)
+        const ytCarousel = document.getElementById('youtube-carousel');
+        let ytAutoScrollTimer;
+
+        function startYtAutoScroll() {
+            if (!ytCarousel) return;
+            ytAutoScrollTimer = setInterval(() => {
+                ytCarousel.scrollLeft += 1;
+                if (ytCarousel.scrollLeft >= (ytCarousel.scrollWidth - ytCarousel.clientWidth - 5)) {
+                    ytCarousel.scrollLeft = 0;
+                }
+            }, 30);
+        }
+
+        function stopYtAutoScroll() {
+            clearInterval(ytAutoScrollTimer);
+        }
+
+        if (ytCarousel) {
+            startYtAutoScroll();
+            ytCarousel.addEventListener('mouseenter', stopYtAutoScroll);
+            ytCarousel.addEventListener('mouseleave', startYtAutoScroll);
+            ytCarousel.addEventListener('touchstart', stopYtAutoScroll);
+            ytCarousel.addEventListener('touchend', stopYtAutoScroll);
+        }
+    </script>
 </body>
 </html>
